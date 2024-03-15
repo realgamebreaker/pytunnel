@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* Dark background color for dark mode */
+            color: #fff; /* Text color */
+            font-family: 'Arial', sans-serif;
+        }
+
+        h2 {
+            color: #00bcd4; /* Accent color for headings */
+        }
+
+        form {
+            margin-top: 20px;
+            max-width: 400px;
+            padding: 20px;
+            background-color: #333; /* Form background color */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px; /* Rounded corners for inputs and buttons */
+            outline: none;
+        }
+
+        button {
+            background-color: #00bcd4; /* Accent color for buttons */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #009688; /* Hover color for buttons */
+        }
+
+        /* Add more styles or adjust as needed */
+    </style>
+</head>
+<body>
+    <h2>Welcome to the Dashboard, {{ username }}!</h2>
+
+    <h3>Execute Command</h3>
+    <form method="POST" action="{{ url_for('command_page') }}">
+        <label for="command">Command:</label>
+        <input type="text" name="command" required>
+
+        <button type="submit">Execute</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
